@@ -1,5 +1,6 @@
 package github.com.brunomeloesilva.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import github.com.brunomeloesilva.domain.Livro;
 import github.com.brunomeloesilva.repository.LivrosRepository;
@@ -31,8 +33,10 @@ public class LivrosResources {
     }
 
     @PostMapping
-    public void salvar(@RequestBody Livro livro) {
-        livrosRepository.save(livro);
+    public ResponseEntity<Void> salvar(@RequestBody Livro livro) {
+        livro = livrosRepository.save(livro);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{livroId}").buildAndExpand(livro.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/{livroId}")
