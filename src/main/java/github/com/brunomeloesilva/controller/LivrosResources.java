@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import github.com.brunomeloesilva.domain.Livro;
@@ -35,5 +35,10 @@ public class LivrosResources {
     @GetMapping("/{livroId}")
     public Optional<Livro> buscar(@PathVariable Long livroId) {
         return  livrosRepository.findById(livroId);
+    }
+
+    @DeleteMapping("/{livroId}")
+    public void deletar(@PathVariable("livroId") Livro livro){
+        livrosRepository.delete(livro);
     }
 }
