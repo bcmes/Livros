@@ -3,17 +3,27 @@ package github.com.brunomeloesilva.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+@Entity
 @JsonInclude(Include.NON_NULL)
 public class Livro {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Date publicacao;
     private String editora;
     private String resumo;
+    @Transient
     private List<Comentario> comentarios;
     private String autor;
 
