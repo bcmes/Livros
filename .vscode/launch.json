@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LivroApplication<brunomeloesilva-livros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "github.com.brunomeloesilva.LivroApplication",
+            "projectName": "brunomeloesilva-livros",
+            "args": ""
+        }
+    ]
+}
