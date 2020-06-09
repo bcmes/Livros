@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,13 +50,27 @@ public class LivrosResources {
     }
 
     @DeleteMapping("/{livroId}")
-    public void deletar(@PathVariable("livroId") Livro livro){
-        livrosRepository.delete(livro);
+    public ResponseEntity<Void> deletar(@PathVariable("livroId") Livro livro){
+        try {
+            livrosRepository.delete(livro);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{livroId}")
-    public void atualizar(@PathVariable("livroId") Long livroId, @RequestBody Livro livro){
+    public ResponseEntity<Void> atualizar(@PathVariable("livroId") Long livroId, @RequestBody Livro livro){
         livro.setId(livroId);
         livrosRepository.save(livro);
+        return ResponseEntity.noContent().build();
     }
 }
+1a
+2a-b
+3d
+4d
+5a-d
+6e
+7b
+8b
