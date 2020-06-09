@@ -28,8 +28,8 @@ public class LivrosResources {
     private LivrosRepository livrosRepository;
 
     @GetMapping
-    public List<Livro> listar() {
-        return livrosRepository.findAll();
+    public ResponseEntity<List<Livro>> listar() {
+        return ResponseEntity.status(HttpStatus.OK).body(livrosRepository.findAll());
     }
 
     @PostMapping
