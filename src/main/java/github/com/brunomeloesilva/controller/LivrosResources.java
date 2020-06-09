@@ -66,11 +66,3 @@ public class LivrosResources {
         return ResponseEntity.noContent().build();
     }
 }
-1a
-2a-b
-3d
-4d
-5a-d
-6e
-7b
-8b
