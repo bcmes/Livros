@@ -2,7 +2,6 @@ package github.com.brunomeloesilva.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import github.com.brunomeloesilva.domain.Livro;
-import github.com.brunomeloesilva.repository.LivrosRepository;
 import github.com.brunomeloesilva.services.LivrosService;
 import github.com.brunomeloesilva.services.exceptions.LivroNaoEncontradoException;
 
