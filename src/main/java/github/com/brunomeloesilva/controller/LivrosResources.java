@@ -18,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import github.com.brunomeloesilva.domain.Livro;
 import github.com.brunomeloesilva.services.LivrosService;
-import github.com.brunomeloesilva.services.exceptions.LivroNaoEncontradoException;
 
 @RestController
 @RequestMapping("/livros")
@@ -41,35 +40,20 @@ public class LivrosResources {
 
     @GetMapping("/{livroId}")
     public ResponseEntity<Livro> buscar(@PathVariable Long livroId) {
-        Livro livro = null;
-        try {
-            livro = livrosService.buscar(livroId);
-        } catch (LivroNaoEncontradoException e) {
-            return ResponseEntity.notFound().build();
-        }
-
+        Livro livro = livrosService.buscar(livroId);;
         return ResponseEntity.status(HttpStatus.OK).body(livro);
     }
 
     @DeleteMapping("/{livroId}")
     public ResponseEntity<Void> deletar(@PathVariable("livroId") Livro livro){
-        try {
-            livrosService.deletar(livro);
-        } catch (LivroNaoEncontradoException e) {
-            return ResponseEntity.notFound().build();
-        }
+        livrosService.deletar(livro);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{livroId}")
     public ResponseEntity<Void> atualizar(@PathVariable Long livroId, @RequestBody Livro livro){
         livro.setId(livroId);
-        try {
-            livrosService.atualizar(livro);
-        } catch (LivroNaoEncontradoException e) {
-            return ResponseEntity.notFound().build();
-        }
-        
+        livrosService.atualizar(livro);
         return ResponseEntity.noContent().build();
     }
 }

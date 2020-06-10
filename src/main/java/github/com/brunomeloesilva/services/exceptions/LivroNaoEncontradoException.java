@@ -1,6 +1,6 @@
 package github.com.brunomeloesilva.services.exceptions;
 
-public class LivroNaoEncontradoException extends RuntimeException {
+public class LivroNaoEncontradoException  extends RuntimeException{
 
     /**
      *
@@ -12,7 +12,7 @@ public class LivroNaoEncontradoException extends RuntimeException {
     }
 
     public LivroNaoEncontradoException(String mensagem, Throwable causa) {
-        super(mensagem, causa);
+        //super(mensagem, causa);
     }
     
 }
