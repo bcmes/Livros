@@ -2,6 +2,7 @@ package github.com.brunomeloesilva.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,5 +38,13 @@ public class ResourceExceptionHandler {
         DetalhesErro detalhesErro = new DetalhesErro(404l, "O Autor não existe no banco de dados.", "http://erros.livrosAPI.com/autor/404", System.currentTimeMillis());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(detalhesErro);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<DetalhesErro> hanbleDataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest r){
+
+        DetalhesErro detalhesErro = new DetalhesErro(400l, "Requisição com JSON mal feito", "http://erros.livrosAPI.com/400", System.currentTimeMillis());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detalhesErro);
     }
 }
