@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -23,7 +23,7 @@ public class Livro {
     private Date publicacao;
     private String editora;
     private String resumo;
-    @Transient
+    @OneToMany(mappedBy = "livro")
     private List<Comentario> comentarios;
     private String autor;
 

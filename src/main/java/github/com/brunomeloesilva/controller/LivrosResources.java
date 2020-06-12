@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import github.com.brunomeloesilva.domain.Comentario;
 import github.com.brunomeloesilva.domain.Livro;
 import github.com.brunomeloesilva.services.LivrosService;
 
@@ -55,5 +56,13 @@ public class LivrosResources {
         livro.setId(livroId);
         livrosService.atualizar(livro);
         return ResponseEntity.noContent().build();
+    }
+
+    /** AREA PARA COMENTARIOS **/
+    @PostMapping("/{livroId}/comentarios")
+    public ResponseEntity<Void> addComentario(@PathVariable Long livroId, @RequestBody Comentario comentario){
+        livrosService.salvarComentario(livroId, comentario);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

@@ -2,12 +2,30 @@ package github.com.brunomeloesilva.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Comentario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String texto;
     private String usuario;
     private Date data;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Livro_Id")
+    private Livro livro;
 
     public Long getId() {
         return this.id;
@@ -60,4 +78,13 @@ public class Comentario {
         this.data = data;
         return this;
     }
+
+    public Livro getLivro() {
+        return this.livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
 }
