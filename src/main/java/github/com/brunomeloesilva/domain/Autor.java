@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
+@JsonInclude(Include.NON_NULL)
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +22,8 @@ public class Autor {
     private String nome;
     private Date nascimento;
     private String nacionalidade;
-    @JsonIgnore //Para evitar o problema ciclico. E apartir de um determinado Autor eu não vou listar os livro dele
     @OneToMany(mappedBy = "autor")
+    @JsonIgnore //Para evitar o problema ciclico. E apartir de um determinado Autor eu não vou listar os livro dele
     private List<Livro> livros;
 
 
