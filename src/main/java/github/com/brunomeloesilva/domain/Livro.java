@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,7 +27,9 @@ public class Livro {
     private String resumo;
     @OneToMany(mappedBy = "livro")
     private List<Comentario> comentarios;
-    private String autor;
+    @JoinColumn(name = "autor_id")
+    @ManyToOne
+    private Autor autor;
 
     public Livro(){}
 
@@ -82,11 +86,11 @@ public class Livro {
         this.comentarios = comentarios;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return this.autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 }
