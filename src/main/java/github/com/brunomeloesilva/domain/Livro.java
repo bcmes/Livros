@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,6 +27,7 @@ public class Livro {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date publicacao;
     private String editora;
+    @Size(max = 255, message = "O resumo não pode conter mais de 255 caracteres.")
     private String resumo;
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(mappedBy = "livro")

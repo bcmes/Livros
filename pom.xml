@@ -4,7 +4,9 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
+     
     <version>2.3.0.RELEASE</version>
+    
     <relativePath/>
   </parent>
   <groupId>github.com.brunomeloesilva</groupId>
@@ -12,10 +14,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Livros</name>
   <description>API de livros</description>
+
   <properties>
     <java.version>13</java.version>
   </properties>
   <dependencies>
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -41,6 +45,14 @@
       <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
+
+    <!-- Para que o javax.validation possa funcionar para as Entities na versão 2.3.0.RELEASE do Spring -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+
   </dependencies>
   <build>
     <plugins>

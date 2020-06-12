@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -44,6 +45,16 @@ public class ResourceExceptionHandler {
     public ResponseEntity<DetalhesErro> hanbleDataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest r){
 
         DetalhesErro detalhesErro = new DetalhesErro(400l, "Requisição com JSON mal feito", "http://erros.livrosAPI.com/400", System.currentTimeMillis());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detalhesErro);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<DetalhesErro> hanbleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest r){
+
+        DetalhesErro detalhesErro = new DetalhesErro(400l
+        , "O JSON na requisição não contém os campos obrigatórios: " 
+        , "http://erros.livrosAPI.com/400", System.currentTimeMillis());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detalhesErro);
     }
