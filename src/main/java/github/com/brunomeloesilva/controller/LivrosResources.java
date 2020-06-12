@@ -65,4 +65,10 @@ public class LivrosResources {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @GetMapping("/{livroId}/comentarios")
+    public ResponseEntity<List<Comentario>> listarComentarios(@PathVariable Long livroId){
+        List<Comentario> comentarios = livrosService.listarComentarios(livroId);
+        return ResponseEntity.status(HttpStatus.OK).body(comentarios);
+    }
 }
