@@ -17,7 +17,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().anyRequest().authenticated()
+        httpSecurity.authorizeRequests()
+        .antMatchers("/h2-console/**").permitAll() /* Essa linha é para dar passagem livre (sem pedir senha), para a url /h2-console/**, os ** é significa qualquer coisa */
+        .anyRequest().authenticated()
         .and().httpBasic()
         .and().csrf().disable(); //csrf é proteção contra ataques web, sem mais detalhes...
     }
