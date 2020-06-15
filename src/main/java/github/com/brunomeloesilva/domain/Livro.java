@@ -98,4 +98,18 @@ public class Livro {
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", publicacao='" + getPublicacao() + "'" +
+            ", editora='" + getEditora() + "'" +
+            ", resumo='" + getResumo() + "'" +
+            ", comentarios='" + getComentarios() + "'" +
+            ", autor='" + getAutor() + "'" +
+            "}";
+    }
+
 }

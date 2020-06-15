@@ -49,6 +49,7 @@ public class LivrosResources {
 
     @DeleteMapping("/{livroId}")
     public ResponseEntity<Void> deletar(@PathVariable("livroId") Livro livro){
+        /* Observe que o @PathVariable na linha acima, buscou e instanciou um livro da DB pelo livroId */
         livrosService.deletar(livro);
         return ResponseEntity.noContent().build();
     }

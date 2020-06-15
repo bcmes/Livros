@@ -2,7 +2,7 @@ package github.com.brunomeloesilva.domain;
 
 public class DetalhesErro {
 
-    private Long status;
+    private Long statusHTTP;
     private String titulo;
     private String mensagemDesenvolvedor;
     private Long timestamp;
@@ -12,7 +12,7 @@ public class DetalhesErro {
 
     public DetalhesErro(Long status, String titulo, String mensagemDesenvolvedor, Long timestamp) {
         this.titulo = titulo;
-        this.status = status;
+        this.statusHTTP = status;
         this.timestamp = timestamp;
         this.mensagemDesenvolvedor = mensagemDesenvolvedor;
     }
@@ -27,11 +27,11 @@ public class DetalhesErro {
     }
 
     public Long getStatus() {
-        return this.status;
+        return this.statusHTTP;
     }
 
     public void setStatus(Long status) {
-        this.status = status;
+        this.statusHTTP = status;
     }
 
     public Long getTimestamp() {
