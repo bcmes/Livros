@@ -2,10 +2,12 @@ package github.com.brunomeloesilva.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,8 +45,11 @@ public class LivrosResources {
 
     @GetMapping("/{livroId}")
     public ResponseEntity<Livro> buscar(@PathVariable Long livroId) {
-        Livro livro = livrosService.buscar(livroId);;
-        return ResponseEntity.status(HttpStatus.OK).body(livro);
+        Livro livro = livrosService.buscar(livroId);
+
+        CacheControl cacheControl = CacheControl.maxAge(20, TimeUnit.SECONDS);
+
+        return ResponseEntity.status(HttpStatus.OK).cacheControl(cacheControl).body(livro);
     }
 
     @DeleteMapping("/{livroId}")
