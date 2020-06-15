@@ -61,7 +61,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
     <dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency>
+    </dependency>
+    <!-- Ao colocar esta dependencia, a API já passa a cobrar a autenticação para acesso -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
